@@ -57,6 +57,7 @@ GEM
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
@@ -80,11 +81,6 @@ GEM
     debug_inspector (1.2.0)
     diff-lcs (1.5.1)
     erubi (1.12.0)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
     faker (3.4.1)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.0)
@@ -133,6 +129,8 @@ GEM
     puma (3.12.6)
     racc (1.8.0)
     rack (2.2.9)
+    rack-cors (2.0.2)
+      rack (>= 2.0.0)
     rack-test (2.1.0)
       rack (>= 1.3)
     rails (6.0.6.1)
@@ -213,12 +211,12 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   better_errors (~> 2.9, >= 2.9.1)
   binding_of_caller (~> 1.0)
   bootsnap (>= 1.4.2)
   byebug
   database_cleaner
-  factory_girl_rails
   faker
   jbuilder (~> 2.7)
   jwt
@@ -226,6 +224,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pry (~> 0.14.1)
   puma (~> 3.11)
+  rack-cors
   rails (~> 6.0.0)
   rspec-rails
   shoulda-matchers (~> 5.0)

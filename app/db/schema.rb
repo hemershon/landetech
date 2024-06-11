@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2024_06_10_193324) do
   create_table "recruiters", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

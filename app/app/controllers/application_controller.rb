@@ -18,8 +18,8 @@ class ApplicationController < ActionController::API
   def authorized_user
     decoded_token = decode_token
     if decoded_token
-      user_id = decoded_token[0]['user_id']
-      @user = User.find_by(id: user_id)
+      recruiter_id = decoded_token[0]['recruiter_id']
+      @recruiter = Recruiter.find_by(id: recruiter_id)
     end
   end
 

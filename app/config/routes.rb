@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :recruiter do
-    post 'signup', to: 'recruiter/recruiters#create', as: 'signup'
-    post 'login', to: 'recruiter/recruiters#login', as: 'login'
+    post 'signup', to: 'recruiters#create'
+    post 'login', to: 'recruiters#login'
     resources :jobs
     resources :submissions
   end
