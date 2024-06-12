@@ -1,9 +1,14 @@
 class Recruiter::JobsController < ApplicationController
-  before_action :set_job, only: %i[show update destroy]
+  before_action :authorized
 
   def index
-    @jobs = current_recruiter.jobs
+    @jobs = current_recruiter.jobs.page(params[:page]).per(10)
     render json: @jobs
+  end
+
+  def show
+    @job = current_recruiter.jobs.find(params[:id])
+    render json: @job
   end
 
   def create
@@ -15,11 +20,8 @@ class Recruiter::JobsController < ApplicationController
     end
   end
 
-  def show
-    render json: @job
-  end
-
   def update
+    @job = current_recruiter.jobs.find(params[:id])
     if @job.update(job_params)
       render json: @job
     else
@@ -28,17 +30,14 @@ class Recruiter::JobsController < ApplicationController
   end
 
   def destroy
+    @job = current_recruiter.jobs.find(params[:id])
     @job.destroy
     head :no_content
   end
 
   private
 
-  def set_job
-    @job = current_recruiter.jobs.find(params[:id])
-  end
-
   def job_params
-    params.require(:job).permit(:title, :description, :start_date, :end_date, :status, :skills)
+    params.require(:job).permit(:title, :description, :start_date, :end_date, :status, :skills, :recruiter_id)
   end
 end

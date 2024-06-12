@@ -1,9 +1,12 @@
 class Public::JobsController < ApplicationController
-  skip_before_action :authenticate_recruiter!, only: [:index, :show]
 
   def index
-    @jobs = Job.where(status: 'active')
+    @jobs = Job.where(status: 'active').limit(10)
+    if params[:query].present?
+      @jobs = @jobs.where("title ILIKE ? OR description ILIKE ? OR skills ILIKE ?",
+                          "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
     render json: @jobs
+    end
   end
 
   def show
