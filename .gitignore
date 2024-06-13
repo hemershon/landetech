@@ -48,7 +48,7 @@ build-iPhoneSimulator/
 /app/yarn-error.log
 /appyarn-debug.log*
 /app.yarn-integrity
-postgres/
+.postgres/
 .rvmrc
 .DS_Store
 .env
