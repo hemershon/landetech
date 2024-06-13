@@ -1,8 +1,5 @@
 class Submission < ApplicationRecord
   belongs_to :job
-  validates :name, presence: true
-  validates :email, presence: true
-  validates :mobile_phone, presence: true
-  validates :resume, presence: true
-  validates :job_id, presence: true
+  validates :name, :email, :mobile_phone, :resume, :job_id, presence: true
+  validates :email, uniqueness: { scope: :job_id, message: "Você já está cadastrado" }
 end
