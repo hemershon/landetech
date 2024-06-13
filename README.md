@@ -1,24 +1,61 @@
-# README
+# Informações para da start na aplicação
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ Sempre que precisar limpar os artefatos dos containers
+```
+./docker-clean.sh
+```
+Copia o .env
+```
+cp .env_example .env
+```
+Caso você precise da permissão para o entrypoint.sh
+```
+chmod +x entrypoint.sh
+```
+Caso você tenha problemas com a permissão do entrypoint.sh, use de forma manual 
 
-Things you may want to cover:
+Subir App Docker
+```
+docker-compose up -d
+```
+Criar Banco de Dados
+```
+docker-compose run app  rails db:create
+```
 
-* Ruby version
+Fazer Migracao
+```
+docker-compose run app  rails db:migrate
+```
+Rodar as Permissiões
+```
+sudo chmod -R 777 app
+```
+```
+sudo chmod -R 777 postgres
+```
 
-* System dependencies
+```
+docker-compose run app  rails credentials:edit RAILS_ENV=development
+```
+Caso precise roda o build do projeto
+```
+docker-compose up --build
+```
 
-* Configuration
+Para executar os teste 
+```
+docker-compose run app bundle exec rspec # "isso irá roda todo o teste"
+```
+Isso irá roda um arquivo especifico
+```
+docker-compose run app bundle exec rspec ./spec/path/file_spec.rb
+```
 
-* Database creation
+Acesso a API 
+```
+localhots:8181
+```
+Collecation Postman
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[Collecaction](https://github.com/hemershon/obj-bank/blob/main/docs/obj-bank.postman_collection.json)
